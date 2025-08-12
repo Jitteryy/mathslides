@@ -13,7 +13,6 @@ class SlideManager {
     // Инициализация
     init() {
         this.generateSlides();
-        this.setupEventListeners();
         this.updateSlide();
     }
 
@@ -211,64 +210,7 @@ class SlideManager {
         }
     }
 
-    // Настройка обработчиков событий
-    setupEventListeners() {
-        // Клавиатурная навигация
-        document.addEventListener('keydown', (e) => {
-            switch(e.key) {
-                case 'ArrowLeft':
-                    this.changeSlide(-1);
-                    break;
-                case 'ArrowRight':
-                    this.changeSlide(1);
-                    break;
-                case 'Home':
-                    this.goToSlide(0);
-                    break;
-                case 'End':
-                    this.goToSlide(this.totalSlides - 1);
-                    break;
-                case ' ':
-                    e.preventDefault();
-                    this.changeSlide(1);
-                    break;
-            }
-        });
 
-        // Поддержка свайпов на мобильных устройствах
-        this.setupTouchSupport();
-    }
-
-    // Настройка поддержки сенсорных экранов
-    setupTouchSupport() {
-        let touchStartX = 0;
-        let touchEndX = 0;
-        const threshold = 50; // Минимальное расстояние для свайпа
-
-        this.container.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        this.container.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            this.handleSwipe(touchStartX, touchEndX, threshold);
-        }, { passive: true });
-    }
-
-    // Обработка свайпа
-    handleSwipe(startX, endX, threshold) {
-        const diff = startX - endX;
-        
-        if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                // Свайп влево - следующий слайд
-                this.changeSlide(1);
-            } else {
-                // Свайп вправо - предыдущий слайд
-                this.changeSlide(-1);
-            }
-        }
-    }
 }
 
 // Инициализация приложения после загрузки DOM
