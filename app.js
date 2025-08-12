@@ -140,6 +140,16 @@ class SlideManager {
         secretSlide.classList.remove('show');
     }
 
+    toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log(`Error attempting to enable fullscreen: ${err.message}`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
     // Обновление прогресс-бара
     updateProgress() {
         const progress = ((this.currentSlide + 1) / this.totalSlides) * 100;
@@ -273,7 +283,30 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Инициализация пасхалки
     initEasterEgg();
+    initAutoHideNavigation();
 });
+
+function initAutoHideNavigation() {
+    const navigation = document.getElementById('navigation');
+    const trigger = document.getElementById('navigationTrigger');
+    let hideTimer;
+
+    const showNavigation = () => {
+        navigation.classList.add('show');
+        clearTimeout(hideTimer);
+    };
+
+    const hideNavigation = () => {
+        hideTimer = setTimeout(() => {
+            navigation.classList.remove('show');
+        }, 2000);
+    };
+
+    trigger.addEventListener('mouseenter', showNavigation);
+    navigation.addEventListener('mouseenter', showNavigation);
+    navigation.addEventListener('mouseleave', hideNavigation);
+    trigger.addEventListener('mouseleave', hideNavigation);
+}
 
 function initEasterEgg() {
     const trigger = document.getElementById('easterEggTrigger');

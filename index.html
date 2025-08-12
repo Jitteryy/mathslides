@@ -43,13 +43,23 @@
         <button class="topic-btn" id="topic2Btn" onclick="slideManager.switchTopic(2)">2</button>
     </div>
     
+    <!-- Фулскрин кнопка -->
+    <div class="fullscreen-toggle">
+        <button class="fullscreen-btn" id="fullscreenBtn" onclick="slideManager.toggleFullscreen()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" id="fullscreenIcon">
+                <path d="M8 3H5C3.89543 3 3 3.89543 3 5V8M21 8V5C21 3.89543 20.1046 3 19 3H16M16 21H19C20.1046 21 21 20.1046 21 19V16M8 21H5C3.89543 21 3 20.1046 3 19V16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+    
     <!-- Негізгі контейнер -->
     <div class="container" id="slidesContainer">
         <!-- Слайдтар JavaScript арқылы генерацияланады -->
     </div>
     
     <!-- Навигация -->
-    <div class="navigation">
+    <div class="navigation-trigger" id="navigationTrigger"></div>
+    <div class="navigation" id="navigation">
         <button class="nav-btn" id="prevBtn" onclick="slideManager.changeSlide(-1)" disabled>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -79,6 +89,8 @@
         <img class="flying-egg" src="egg.png" alt="Flying Egg">
         <img class="flying-egg" src="egg.png" alt="Flying Egg" style="animation-delay: -2s;">
         <img class="flying-egg" src="egg.png" alt="Flying Egg" style="animation-delay: -4s;">
+        <img class="flying-egg" src="end1.png" alt="Flying End" style="animation-delay: -1s;">
+        <img class="flying-egg" src="end1.png" alt="Flying End" style="animation-delay: -3s;">
     </div>
 
     <!-- Easter Egg -->
