@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Математика есептері - Интерактивті слайдтар</title>
+    
+    <!-- MathJax CDN -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            startup: {
+                pageReady: () => {
+                    return MathJax.startup.defaultPageReady().then(() => {
+                        console.log('MathJax жүктелді');
+                    });
+                }
+            }
+        };
+    </script>
+    
+    <!-- Стильдер -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Прогресс бар -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <!-- Слайд саны -->
+    <div class="slide-counter" id="slideCounter">1 / 15</div>
+    
+    <!-- Негізгі тақырып -->
+    <div class="main-title">Рационал сандарды көбейту және бөлу</div>
+    
+    <!-- Негізгі контейнер -->
+    <div class="container" id="slidesContainer">
+        <!-- Слайдтар JavaScript арқылы генерацияланады -->
+    </div>
+    
+    <!-- Навигация -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="slideManager.changeSlide(-1)" disabled>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="nav-btn" id="homeBtn" onclick="slideManager.goToSlide(0)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M3 9L12 2L21 9V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="nav-btn" id="nextBtn" onclick="slideManager.changeSlide(1)">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="problems-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
