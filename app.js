@@ -1,7 +1,9 @@
 // Класс для управления слайдами
 class SlideManager {
-    constructor(problemsData) {
-        this.problems = problemsData;
+    constructor(topicsData) {
+        this.topicsData = topicsData;
+        this.currentTopic = 1;
+        this.problems = topicsData[this.currentTopic].problems;
         this.currentSlide = 0;
         this.totalSlides = this.problems.length;
         this.container = document.getElementById('slidesContainer');
@@ -33,20 +35,46 @@ class SlideManager {
             this.createStepHTML(step, index + 1)
         ).join('');
 
+        const optionsHTML = problem.type === 'multiple_choice' ? 
+            this.createOptionsHTML(problem.options, problem.correct_option) : '';
+
         return `
             <div class="slide">
-                <span class="problem-number">№${problem.number} есеп</span>
+                <div class="header-container">
+                    <span class="problem-number">№${problem.number} есеп</span>
+                    <div class="main-title">Рационал сандарды көбейту және бөлу</div>
+                </div>
                 
                 <div class="given-section">
                     <div class="given-label">Берілгені:</div>
                     <div class="given-content">${problem.given}</div>
                 </div>
                 
+                ${optionsHTML}
+                
                 ${stepsHTML}
                 
                 <div class="answer-section">
                     <div class="answer-label">Жауабы:</div>
                     <div class="answer-value">${problem.answer}</div>
+                </div>
+            </div>
+        `;
+    }
+
+    createOptionsHTML(options, correctOption) {
+        const optionsHTML = options.map(option => 
+            `<div class="option ${option.label.replace(')', '').toLowerCase() === correctOption.toLowerCase() ? 'correct' : ''}">
+                <span class="option-label">${option.label}</span>
+                <span class="option-value">${option.value}</span>
+            </div>`
+        ).join('');
+
+        return `
+            <div class="options-section">
+                <div class="options-label">Жауап нұсқалары:</div>
+                <div class="options-container">
+                    ${optionsHTML}
                 </div>
             </div>
         `;
@@ -122,6 +150,37 @@ class SlideManager {
         }
     }
 
+    // Переключение топика
+    switchTopic(topicId) {
+        if (this.topicsData[topicId]) {
+            this.currentTopic = topicId;
+            this.problems = this.topicsData[topicId].problems;
+            this.totalSlides = this.problems.length;
+            this.currentSlide = 0;
+            
+            this.updateTopicButtons();
+            this.updateMainTitle();
+            this.generateSlides();
+            this.updateSlide();
+        }
+    }
+
+    // Обновление кнопок топиков
+    updateTopicButtons() {
+        document.querySelectorAll('.topic-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.getElementById(`topic${this.currentTopic}Btn`).classList.add('active');
+    }
+
+    // Обновление главного заголовка
+    updateMainTitle() {
+        const titleElement = document.querySelector('.main-title');
+        if (titleElement) {
+            titleElement.textContent = this.topicsData[this.currentTopic].title;
+        }
+    }
+
     // Настройка обработчиков событий
     setupEventListeners() {
         // Клавиатурная навигация
@@ -185,11 +244,12 @@ class SlideManager {
 // Инициализация приложения после загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
     // Создаем глобальный объект для доступа из HTML
-    window.slideManager = new SlideManager(PROBLEMS_DATA);
+    window.slideManager = new SlideManager(TOPICS_DATA);
     
     // Логируем успешную инициализацию
     console.log('Слайд менеджер инициализирован');
-    console.log(`Жүктелген есептер саны: ${PROBLEMS_DATA.length}`);
+    console.log(`Жүктелген топиктер саны: ${Object.keys(TOPICS_DATA).length}`);
+    console.log(`Ағымдағы топик: ${TOPICS_DATA[1].title}`);
 });
 
 // Дополнительная проверка загрузки MathJax
