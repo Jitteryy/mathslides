@@ -23,6 +23,13 @@ body {
     align-items: center;
     overflow: hidden;
     position: relative;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* Контейнер */
@@ -31,6 +38,7 @@ body {
     max-width: 1000px;
     height: 85vh;
     position: relative;
+    overflow: hidden;
 }
 
 /* Слайды */
@@ -44,7 +52,10 @@ body {
     padding: 50px;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
     display: none;
+    overflow-x: hidden;
     overflow-y: auto;
+    word-wrap: break-word;
+    hyphens: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(147, 51, 234, 0.7) transparent;
 }
@@ -90,19 +101,9 @@ body {
     border-radius: 50px;
     font-weight: bold;
     font-size: 18px;
-    animation: slideDown 0.6s ease-out;
 }
 
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+
 
 /* Условие задачи */
 .problem-statement {
@@ -262,12 +263,18 @@ body {
 
 .step-content-wrapper {
     flex: 1;
+    min-width: 0;
+    overflow-wrap: break-word;
 }
 
 .step-content {
     font-size: 18px;
     color: #333;
     margin-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    white-space: pre-wrap;
 }
 
 .step-explanation {
@@ -275,6 +282,10 @@ body {
     font-style: italic;
     font-size: 14px;
     margin-top: 8px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    white-space: pre-wrap;
 }
 
 /* Секция ответа */
@@ -673,6 +684,28 @@ height: 40px;
 .nav-btn svg {
 width: 20px;
 height: 20px;
+}
+
+.secret-slide h1 {
+font-size: 24px;
+margin-bottom: 15px;
+}
+
+.secret-slide p {
+font-size: 16px;
+margin-bottom: 20px;
+}
+
+.flying-egg {
+width: 50px;
+}
+
+.close-secret {
+width: 30px;
+height: 30px;
+font-size: 18px;
+top: 20px;
+right: 20px;
 }
 
 .main-title {
