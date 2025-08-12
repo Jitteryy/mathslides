@@ -321,37 +321,20 @@ body {
 /* Навигация */
 .navigation {
     position: absolute;
-    bottom: -60px;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 15px;
     z-index: 100;
-    transition: bottom 0.3s ease;
     padding: 15px 20px;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
     border-radius: 25px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-
 }
 
-.navigation:hover,
-.navigation.show {
-    bottom: 30px;
 
-}
-
-.navigation-trigger {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 50px;
-    z-index: 99;
-    background: transparent;
-}
 
 .nav-btn {
     background: rgba(255, 255, 255, 0.9);
@@ -660,9 +643,42 @@ width: 200px;
 }
 
 .slide-counter {
-top: 60px;
-right: 20px;
+top: 15px;
+right: 15px;
+font-size: 12px;
+padding: 8px 15px;
+}
+
+.topic-selector {
+top: 15px;
+left: 15px;
+right: auto;
+}
+
+.topic-btn {
+width: 35px;
+height: 35px;
 font-size: 14px;
+}
+
+.fullscreen-toggle {
+display: none;
+}
+
+.navigation {
+bottom: 15px;
+padding: 10px 15px;
+gap: 10px;
+}
+
+.nav-btn {
+width: 40px;
+height: 40px;
+}
+
+.nav-btn svg {
+width: 20px;
+height: 20px;
 }
 
 .main-title {

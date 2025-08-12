@@ -6,8 +6,6 @@
     <title>Математика есептері - Интерактивті слайдтар</title>
     
     <!-- MathJax CDN -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
         window.MathJax = {
             tex: {
@@ -15,14 +13,14 @@
                 displayMath: [['$$', '$$'], ['\\[', '\\]']]
             },
             startup: {
-                pageReady: () => {
-                    return MathJax.startup.defaultPageReady().then(() => {
-                        console.log('MathJax жүктелді');
-                    });
+                ready: () => {
+                    console.log('MathJax жүктелді');
+                    MathJax.startup.defaultReady();
                 }
             }
         };
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
     
     <!-- Стильдер -->
     <link rel="stylesheet" href="styles.css">
@@ -58,7 +56,6 @@
     </div>
     
     <!-- Навигация -->
-    <div class="navigation-trigger" id="navigationTrigger"></div>
     <div class="navigation" id="navigation">
         <button class="nav-btn" id="prevBtn" onclick="slideManager.changeSlide(-1)" disabled>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

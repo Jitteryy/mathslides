@@ -24,7 +24,7 @@ class SlideManager {
         ).join('');
         
         // Перерендерим MathJax после создания слайдов
-        if (window.MathJax) {
+        if (window.MathJax && window.MathJax.typesetPromise) {
             MathJax.typesetPromise();
         }
     }
@@ -42,7 +42,7 @@ class SlideManager {
             <div class="slide">
                 <div class="header-container">
                     <span class="problem-number">№${problem.number} есеп</span>
-                    <div class="main-title">Рационал сандарды көбейту және бөлу</div>
+                    <div class="main-title">${this.topicsData[this.currentTopic].title}</div>
                 </div>
                 
                 <div class="given-section">
@@ -102,7 +102,7 @@ class SlideManager {
             if (index === this.currentSlide) {
                 slide.classList.add('active');
                 // Перерендерим MathJax для активного слайда
-                if (window.MathJax) {
+                if (window.MathJax && window.MathJax.typesetPromise) {
                     MathJax.typesetPromise([slide]);
                 }
             } else if (index < this.currentSlide) {
@@ -283,30 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Инициализация пасхалки
     initEasterEgg();
-    initAutoHideNavigation();
 });
-
-function initAutoHideNavigation() {
-    const navigation = document.getElementById('navigation');
-    const trigger = document.getElementById('navigationTrigger');
-    let hideTimer;
-
-    const showNavigation = () => {
-        navigation.classList.add('show');
-        clearTimeout(hideTimer);
-    };
-
-    const hideNavigation = () => {
-        hideTimer = setTimeout(() => {
-            navigation.classList.remove('show');
-        }, 2000);
-    };
-
-    trigger.addEventListener('mouseenter', showNavigation);
-    navigation.addEventListener('mouseenter', showNavigation);
-    navigation.addEventListener('mouseleave', hideNavigation);
-    trigger.addEventListener('mouseleave', hideNavigation);
-}
 
 function initEasterEgg() {
     const trigger = document.getElementById('easterEggTrigger');
@@ -334,14 +311,5 @@ function initEasterEgg() {
                 clickCount = 0;
             }, 500);
         }
-    });
-}
-
-// Дополнительная проверка загрузки MathJax
-if (window.MathJax) {
-    MathJax.startup.promise.then(() => {
-        console.log('MathJax толық жүктелді');
-    }).catch((e) => {
-        console.error('MathJax жүктелу қатесі:', e);
     });
 }
