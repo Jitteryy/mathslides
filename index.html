@@ -31,6 +31,7 @@
     <!-- Прогресс бар -->
     <div class="progress-bar">
         <div class="progress-fill" id="progressFill"></div>
+        <div class="progress-text" id="progressText">0 / 1000</div>
     </div>
     
     <!-- Слайд саны -->
@@ -64,8 +65,26 @@
                 <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </button>
+        <button class="nav-btn checkmark-btn" id="checkmarkBtn" onclick="slideManager.showSecretSlide()" style="display: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
     </div>
     
+    <!-- Secret Slide -->
+    <div class="secret-slide" id="secretSlide">
+        <button class="close-secret" onclick="slideManager.hideSecretSlide()">×</button>
+        <h1>Назарларыңызға рахмет!</h1>
+        <img class="flying-egg" src="egg.png" alt="Flying Egg">
+        <img class="flying-egg" src="egg.png" alt="Flying Egg" style="animation-delay: -2s;">
+        <img class="flying-egg" src="egg.png" alt="Flying Egg" style="animation-delay: -4s;">
+    </div>
+
+    <!-- Easter Egg -->
+    <div class="easter-egg-trigger" id="easterEggTrigger"></div>
+    <img class="easter-egg" id="easterEgg" src="egg.png" alt="Easter Egg">
+
     <!-- JavaScript -->
     <script src="problems-data.js"></script>
     <script src="app.js"></script>

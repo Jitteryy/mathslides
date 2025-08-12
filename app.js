@@ -115,16 +115,36 @@ class SlideManager {
         this.updateCounter();
     }
 
-    // Обновление кнопок навигации
     updateNavigation() {
         document.getElementById('prevBtn').disabled = this.currentSlide === 0;
         document.getElementById('nextBtn').disabled = this.currentSlide === this.totalSlides - 1;
+        
+        const checkmarkBtn = document.getElementById('checkmarkBtn');
+        const isLastTopic = this.currentTopic === 2;
+        const isLastSlide = this.currentSlide === this.totalSlides - 1;
+        
+        if (isLastTopic && isLastSlide) {
+            checkmarkBtn.style.display = 'flex';
+        } else {
+            checkmarkBtn.style.display = 'none';
+        }
+    }
+
+    showSecretSlide() {
+        const secretSlide = document.getElementById('secretSlide');
+        secretSlide.classList.add('show');
+    }
+
+    hideSecretSlide() {
+        const secretSlide = document.getElementById('secretSlide');
+        secretSlide.classList.remove('show');
     }
 
     // Обновление прогресс-бара
     updateProgress() {
         const progress = ((this.currentSlide + 1) / this.totalSlides) * 100;
         document.getElementById('progressFill').style.width = progress + '%';
+        document.getElementById('progressText').textContent = `${this.currentSlide + 1} / ${this.totalSlides}`;
     }
 
     // Обновление счетчика слайдов
@@ -250,7 +270,39 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Слайд менеджер инициализирован');
     console.log(`Жүктелген топиктер саны: ${Object.keys(TOPICS_DATA).length}`);
     console.log(`Ағымдағы топик: ${TOPICS_DATA[1].title}`);
+    
+    // Инициализация пасхалки
+    initEasterEgg();
 });
+
+function initEasterEgg() {
+    const trigger = document.getElementById('easterEggTrigger');
+    const easterEgg = document.getElementById('easterEgg');
+    let clickCount = 0;
+    let clickTimer = null;
+    
+    trigger.addEventListener('click', () => {
+        clickCount++;
+        
+        if (clickTimer) {
+            clearTimeout(clickTimer);
+        }
+        
+        if (clickCount === 3) {
+            easterEgg.classList.add('show');
+            
+            setTimeout(() => {
+                easterEgg.classList.remove('show');
+            }, 3000);
+            
+            clickCount = 0;
+        } else {
+            clickTimer = setTimeout(() => {
+                clickCount = 0;
+            }, 500);
+        }
+    });
+}
 
 // Дополнительная проверка загрузки MathJax
 if (window.MathJax) {

@@ -7,7 +7,8 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: url('bg.png') repeat;
+    background-size: auto;
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -39,20 +40,27 @@ body {
     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: #667eea transparent;
+    scrollbar-color: rgba(147, 51, 234, 0.7) transparent;
 }
 
 .slide::-webkit-scrollbar {
-    width: 8px;
+    width: 3px;
 }
 
 .slide::-webkit-scrollbar-track {
     background: transparent;
+    margin: 30% 0;
 }
 
 .slide::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border-radius: 10px;
+    background: rgba(147, 51, 234, 0.7);
+    border-radius: 1.5px;
+    transition: background 0.3s ease;
+    min-height: 20px;
+}
+
+.slide::-webkit-scrollbar-thumb:hover {
+    background: rgba(147, 51, 234, 0.9);
 }
 
 .slide.active {
@@ -270,13 +278,15 @@ body {
 
 /* Секция ответа */
 .answer-section {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
+    background: rgba(34, 197, 94, 0.15);
+    color: #15803d;
     padding: 25px;
     border-radius: 20px;
     margin-top: 30px;
     text-align: center;
     animation: pulse 2s infinite;
+    border: 2px solid #22c55e;
+    box-shadow: 0 5px 15px rgba(34, 197, 94, 0.2);
 }
 
 @keyframes pulse {
@@ -347,6 +357,110 @@ body {
     height: 24px;
 }
 
+.checkmark-btn {
+    background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+    color: white !important;
+}
+
+.checkmark-btn:hover {
+    background: linear-gradient(135deg, #16a34a, #15803d) !important;
+    transform: scale(1.1);
+}
+
+.secret-slide {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.secret-slide.show {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+
+.secret-slide h1 {
+    font-size: 48px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.secret-slide p {
+    font-size: 24px;
+    color: #cbd5e1;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.flying-egg {
+    position: absolute;
+    width: 80px;
+    height: auto;
+    animation: fly 8s linear infinite;
+}
+
+@keyframes fly {
+    0% {
+        left: -50px;
+        top: 20%;
+        transform: rotate(0deg);
+    }
+    25% {
+        left: 25%;
+        top: 60%;
+        transform: rotate(90deg);
+    }
+    50% {
+        left: 50%;
+        top: 30%;
+        transform: rotate(180deg);
+    }
+    75% {
+        left: 75%;
+        top: 70%;
+        transform: rotate(270deg);
+    }
+    100% {
+        left: 100%;
+        top: 40%;
+        transform: rotate(360deg);
+    }
+}
+
+.close-secret {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-secret:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
 /* Прогресс бар */
 .progress-bar {
     position: absolute;
@@ -354,18 +468,35 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    height: 25px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
     overflow: hidden;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
     height: 100%;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    border-radius: 10px;
+    background: linear-gradient(90deg, #ff6b6b, #feca57);
+    border-radius: 13px;
     transition: width 0.5s ease;
+    z-index: 1;
+}
+
+.progress-text {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 /* Счетчик слайдов */
@@ -506,4 +637,55 @@ line-height: 1.2;
 
 .container {
     animation: loadingFade 0.8s ease-out;
+}
+
+.easter-egg-trigger {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    z-index: 1000;
+    cursor: pointer;
+    background: transparent;
+}
+
+.easter-egg {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: 110px;
+    width: auto;
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 999;
+    pointer-events: none;
+}
+
+.easter-egg.show {
+    opacity: 1;
+    transform: scale(1) rotate(360deg);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) scale(1) rotate(360deg);
+    }
+    40% {
+        transform: translateY(-10px) scale(1.1) rotate(360deg);
+    }
+    60% {
+        transform: translateY(-5px) scale(1.05) rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .easter-egg-trigger {
+        display: none;
+    }
+    .easter-egg {
+        display: none;
+    }
 }

@@ -658,7 +658,163 @@ const PROBLEMS_DATA_2 = [
         ],
         "answer": "$-1,94$",
         "correct_option": "A"
-    }    
+    }    ,
+    {
+        "number": 5,
+        "statement": "Есептеңіз: $\\frac{16^{n+2} \\cdot 4^{n-1}}{8^{2n}}$",
+        "given": "$\\frac{16^{n+2} \\cdot 4^{n-1}}{8^{2n}}$",
+        "type": "multiple_choice",
+        "options": [
+            { "label": "A)", "value": "$64$" },
+            { "label": "B)", "value": "$32$" },
+            { "label": "C)", "value": "$16$" },
+            { "label": "D)", "value": "$8$" },
+            { "label": "E)", "value": "$4$" }
+        ],
+        "steps": [
+            {
+                "content": "$16 = 2^4, \\quad 4 = 2^2, \\quad 8 = 2^3$",
+                "explanation": "Барлық сандарды 2 негізінде жазамыз."
+            },
+            {
+                "content": "$16^{n+2} = (2^4)^{n+2} = 2^{4(n+2)} = 2^{4n + 8}$",
+                "explanation": "Күшті дәреже ережесімен түрлендіреміз."
+            },
+            {
+                "content": "$4^{n-1} = (2^2)^{n-1} = 2^{2n - 2}$",
+                "explanation": "Екінші көбейткішті түрлендіреміз."
+            },
+            {
+                "content": "$8^{2n} = (2^3)^{2n} = 2^{6n}$",
+                "explanation": "Бөлімді түрлендіреміз."
+            },
+            {
+                "content": "$\\frac{2^{4n + 8} \\cdot 2^{2n - 2}}{2^{6n}} = \\frac{2^{(4n+8) + (2n - 2)}}{2^{6n}} = \\frac{2^{6n + 6}}{2^{6n}}$",
+                "explanation": "Дәреже қосу және бөлу ережелерін қолданамыз."
+            },
+            {
+                "content": "$2^{6n+6 - 6n} = 2^6 = 64$",
+                "explanation": "Соңғы нәтижені табамыз."
+            }
+        ],
+        "answer": "$64$",
+        "correct_option": "A"
+    },
+    {
+        "number": 6,
+        "statement": "Есептеңіз: $2 \\cdot 4^{-2} + \\left(\\frac{2}{3}\\right)^{-3} - \\left(\\frac{1}{5}\\right)^0$",
+        "given": "$2 \\cdot 4^{-2} + \\left(\\frac{2}{3}\\right)^{-3} - \\left(\\frac{1}{5}\\right)^0$",
+        "type": "multiple_choice",
+        "options": [
+            { "label": "A)", "value": "$3,5$" },
+            { "label": "B)", "value": "$-4,5$" },
+            { "label": "C)", "value": "$-4,25$" },
+            { "label": "D)", "value": "$3,25$" },
+            { "label": "E)", "value": "$2,5$" }
+        ],
+        "steps": [
+            {
+                "content": "$4^{-2} = (2^2)^{-2} = 2^{-4} = \\frac{1}{16}$",
+                "explanation": "Теріс дәреже ережесін қолданамыз."
+            },
+            {
+                "content": "$2 \\cdot \\frac{1}{16} = \\frac{2}{16} = \\frac{1}{8}$",
+                "explanation": "Бірінші көбейтіндісін есептейміз."
+            },
+            {
+                "content": "$\\left(\\frac{2}{3}\\right)^{-3} = \\left(\\frac{3}{2}\\right)^3 = \\frac{27}{8}$",
+                "explanation": "Теріс дәреже бөлшекті кері аударады."
+            },
+            {
+                "content": "$\\left(\\frac{1}{5}\\right)^0 = 1$",
+                "explanation": "Кез келген санның нөл дәрежесі 1-ге тең."
+            },
+            {
+                "content": "$\\frac{1}{8} + \\frac{27}{8} - 1 = \\frac{28}{8} - 1 = 3,5 - 1 = 2,5$",
+                "explanation": "Барлық бөліктерді қосып, соңғы нәтижені табамыз."
+            }
+        ],
+        "answer": "$2,5$",
+        "correct_option": "E"
+    }
+    ,
+    
+        {
+          "number": 7,
+          "statement": "Есептеңіз: $3^6 \\cdot 9^{-2} \\cdot 5^4 - 9 \\cdot 125 \\cdot \\left(\\frac{1}{5}\\right)^{-1}$",
+          "given": "$3^6 \\cdot 9^{-2} \\cdot 5^4 - 9 \\cdot 125 \\cdot \\left(\\frac{1}{5}\\right)^{-1}$",
+          "type": "multiple_choice",
+          "options": [
+            { "label": "A)", "value": "$1$" },
+            { "label": "B)", "value": "$3$" },
+            { "label": "C)", "value": "$0$" },
+            { "label": "D)", "value": "$2$" },
+            { "label": "E)", "value": "$-2$" }
+          ],
+          "steps": [
+            {
+              "content": "$9 = 3^2$, сондықтан $9^{-2} = (3^2)^{-2} = 3^{-4}$",
+              "explanation": "Негіздерді $3$ етіп жазамыз."
+            },
+            {
+              "content": "$3^6 \\cdot 3^{-4} = 3^{6-4} = 3^2 = 9$",
+              "explanation": "Дәреже қосу, азайту ережесін қолданамыз."
+            },
+            {
+              "content": "$9 \\cdot 5^4 = 9 \\cdot 625 = 5625$",
+              "explanation": "Бірінші көбейтіндіні есептейміз."
+            },
+            {
+              "content": "$\\left(\\frac{1}{5}\\right)^{-1} = 5$",
+              "explanation": "Теріс дәреже бөлшекті кері аударады."
+            },
+            {
+              "content": "$9 \\cdot 125 \\cdot 5 = 9 \\cdot 625 = 5625$",
+              "explanation": "Екінші көбейтіндіні есептейміз."
+            },
+            {
+              "content": "$5625 - 5625 = 0$",
+              "explanation": "Айырманы аламыз."
+            }
+          ],
+          "answer": "$0$",
+          "correct_option": "C"
+        },
+        {
+          "number": 8,
+          "statement": "Есептеңіз: $\\frac{2^{-2} \\cdot 5^3 \\cdot 10^{-4}}{2^{-3} \\cdot 5^2 \\cdot 10^{-5}}$",
+          "given": "$\\frac{2^{-2} \\cdot 5^3 \\cdot 10^{-4}}{2^{-3} \\cdot 5^2 \\cdot 10^{-5}}$",
+          "type": "multiple_choice",
+          "options": [
+            { "label": "A)", "value": "$0,1$" },
+            { "label": "B)", "value": "$1000$" },
+            { "label": "C)", "value": "$1$" },
+            { "label": "D)", "value": "$100$" },
+            { "label": "E)", "value": "$20$" }
+          ],
+         "steps": [
+        {
+            "content": "$\\frac{2^{-2}}{2^{-3}} = 2^{-2 - (-3)} = 2^1 = 2$",
+            "explanation": "2 негізі бойынша дәрежелерді азайтамыз."
+        },
+        {
+            "content": "$\\frac{5^3}{5^2} = 5^{3-2} = 5$",
+            "explanation": "5 негізі бойынша дәрежелерді азайтамыз."
+        },
+        {
+            "content": "$\\frac{10^{-4}}{10^{-5}} = 10^{-4 - (-5)} = 10^1 = 10$",
+            "explanation": "10 негізі бойынша дәрежелерді азайтамыз."
+        },
+        {
+            "content": "$2 \\cdot 5 \\cdot 10 = 100$",
+            "explanation": "Барлық көбейткіштерді көбейтеміз."
+        }
+    ],
+          "answer": "$100$",
+          "correct_option": "D"
+        }
+      
+      
     
 ];
 
