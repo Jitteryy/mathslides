@@ -526,7 +526,7 @@ const PROBLEMS_DATA_2 = [
             },
             {
                 "content": "$x = \\frac{567}{99}$",
-                "explanation": "Екі жағын 99-ға бөлеміз."
+                "explanation": "Екі жағын 9-ға бөлеміз."
             },
             {
                 "content": "$x = \\frac{567 \\div 9}{99 \\div 9} = \\frac{63}{11}$",
