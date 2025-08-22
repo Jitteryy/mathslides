@@ -55,7 +55,7 @@ class SlideManager {
                 
                 <div class="answer-section">
                     <div class="answer-label">Жауабы:</div>
-                    <div class="answer-value">${problem.answer}</div>
+                    <div class="answer-value">${problem.correct_option ? problem.correct_option + ') ' : ''}${problem.answer}</div>
                 </div>
             </div>
         `;
@@ -63,7 +63,7 @@ class SlideManager {
 
     createOptionsHTML(options, correctOption) {
         const optionsHTML = options.map(option => 
-            `<div class="option ${option.label.replace(')', '').toLowerCase() === correctOption.toLowerCase() ? 'correct' : ''}">
+            `<div class="option ${option.label === correctOption ? 'correct' : ''}">
                 <span class="option-label">${option.label}</span>
                 <span class="option-value">${option.value}</span>
             </div>`
@@ -119,7 +119,7 @@ class SlideManager {
         document.getElementById('nextBtn').disabled = this.currentSlide === this.totalSlides - 1;
         
         const checkmarkBtn = document.getElementById('checkmarkBtn');
-        const isLastTopic = this.currentTopic === 2;
+        const isLastTopic = this.currentTopic === 3;
         const isLastSlide = this.currentSlide === this.totalSlides - 1;
         
         if (isLastTopic && isLastSlide) {
